@@ -1,0 +1,31 @@
+﻿@aspnet-XXE-Demo_HostAddress = https://localhost:7264
+
+### 
+POST {{aspnet-XXE-Demo_HostAddress}}/upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="./bad.xml"
+Content-Type: application/octet-stream
+
+< ./bad.xml
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+GET {{aspnet-XXE-Demo_HostAddress}}/
+
+###
+
+POST {{aspnet-XXE-Demo_HostAddress}}/uploadvulninband
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="./bad.xml"
+Content-Type: application/octet-stream
+
+< ./bad.xml
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###

@@ -1,0 +1,43 @@
+using Microsoft.AspNetCore.Mvc;
+
+using System.IO;
+using System.Reflection.Metadata;
+using System.Xml;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+app.MapPost("/upload", async ([FromForm] IFormFile file) => {
+    var filename = file.Name;
+    // https://github.com/dotnet/aspnetcore/discussions/49882
+    app.Logger.LogInformation(filename);
+
+    XmlDocument xmlDoc = new XmlDocument();
+    using (var stream = file.OpenReadStream()) {
+        xmlDoc.Load(stream);
+    }
+    return xmlDoc.OuterXml;
+});//.DisableAntiforgery();
+//https://stackoverflow.com/questions/77189996/upload-files-to-a-minimal-api-endpoint-in-net-8
+
+app.MapPost("/uploadvulninband", async ([FromForm] IFormFile file) => {
+    var filename = file.Name;
+    // https://github.com/dotnet/aspnetcore/discussions/49882
+    app.Logger.LogInformation(filename);
+
+    XmlDocument xmlDoc = new XmlDocument();
+    var settings = new XmlReaderSettings {
+        DtdProcessing = DtdProcessing.Parse
+    };
+
+    using (var stream = file.OpenReadStream()) {
+        using (var reader = XmlReader.Create(stream, settings)) {
+            xmlDoc.Load(reader);
+        }
+    }
+    return xmlDoc.OuterXml;
+});//.DisableAntiforgery();
+
+app.Run();
