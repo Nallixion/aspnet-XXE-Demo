@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnet-XXE-Demo-net48", "aspnet-XXE-Demo-net48\aspnet-XXE-Demo-net48.csproj", "{2D36872E-4682-46D3-B6DD-6E559DE60416}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnet-XXE-Demo-net48.Tests", "src\aspnet-XXE-Demo-net48.Tests\aspnet-XXE-Demo-net48.Tests.csproj", "{1C37E7F8-1CCF-4781-842A-70A3A7BD06CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnet-XXE-Demo-net48.Tests", "tests\aspnet-XXE-Demo-net48.Tests\aspnet-XXE-Demo-net48.Tests.csproj", "{1C37E7F8-1CCF-4781-842A-70A3A7BD06CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
