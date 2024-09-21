@@ -1,10 +1,23 @@
-﻿POST http://localhost:5000/api/xml HTTP/1.1
+﻿POST https://localhost:44354/api/xml HTTP/1.1
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Accept: application/json
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="example.txt"
+Content-Disposition: form-data; name="file"; filename="bad.xml"
 Content-Type: text/plain
 
-< ./path/to/your/file/example.txt
+< ./bad.xml
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+
+POST https://localhost:44354/api/xml/vulninband HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Accept: application/json
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="bad.xml"
+Content-Type: text/plain
+
+< ./bad.xml
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
