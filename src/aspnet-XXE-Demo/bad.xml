@@ -1,6 +1,6 @@
 <!DOCTYPE foo [
   <!ELEMENT foo ANY >
-  <!ENTITY xxe SYSTEM "dir" >
+  <!ENTITY xxe SYSTEM "C:\windows\system32\drivers\etc\hosts" >
 ]>
 <contact>
   <name>&xxe;</name>

@@ -19,7 +19,7 @@ app.MapPost("/upload", async ([FromForm] IFormFile file) => {
         xmlDoc.Load(stream);
     }
     return xmlDoc.OuterXml;
-});//.DisableAntiforgery();
+}).DisableAntiforgery();
 //https://stackoverflow.com/questions/77189996/upload-files-to-a-minimal-api-endpoint-in-net-8
 
 app.MapPost("/uploadvulninband", async ([FromForm] IFormFile file) => {
@@ -31,6 +31,7 @@ app.MapPost("/uploadvulninband", async ([FromForm] IFormFile file) => {
     var settings = new XmlReaderSettings {
         DtdProcessing = DtdProcessing.Parse
     };
+    settings.XmlResolver = new XmlUrlResolver();
 
     using (var stream = file.OpenReadStream()) {
         using (var reader = XmlReader.Create(stream, settings)) {
@@ -38,6 +39,6 @@ app.MapPost("/uploadvulninband", async ([FromForm] IFormFile file) => {
         }
     }
     return xmlDoc.OuterXml;
-});//.DisableAntiforgery();
+}).DisableAntiforgery();
 
 app.Run();
