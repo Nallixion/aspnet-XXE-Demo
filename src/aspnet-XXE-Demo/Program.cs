@@ -41,4 +41,23 @@ app.MapPost("/uploadvulninband", async ([FromForm] IFormFile file) => {
     return xmlDoc.OuterXml;
 }).DisableAntiforgery();
 
+app.MapPost("/uploadvulnoutofband", async ([FromForm] IFormFile file) => {
+    var filename = file.Name;
+    // https://github.com/dotnet/aspnetcore/discussions/49882
+    app.Logger.LogInformation(filename);
+
+    XmlDocument xmlDoc = new XmlDocument();
+    var settings = new XmlReaderSettings {
+        DtdProcessing = DtdProcessing.Parse
+    };
+    settings.XmlResolver = new XmlUrlResolver();
+
+    using (var stream = file.OpenReadStream()) {
+        using (var reader = XmlReader.Create(stream, settings)) {
+            xmlDoc.Load(reader);
+        }
+    }
+    return xmlDoc.OuterXml;
+}).DisableAntiforgery();
+
 app.Run();
