@@ -18,7 +18,7 @@ app.MapPost("/upload", async ([FromForm] IFormFile file) => {
     using (var stream = file.OpenReadStream()) {
         xmlDoc.Load(stream);
     }
-    return xmlDoc.OuterXml;
+    return await Task.FromResult(xmlDoc.OuterXml);
 }).DisableAntiforgery();
 //https://stackoverflow.com/questions/77189996/upload-files-to-a-minimal-api-endpoint-in-net-8
 
@@ -38,7 +38,7 @@ app.MapPost("/uploadvulninband", async ([FromForm] IFormFile file) => {
             xmlDoc.Load(reader);
         }
     }
-    return xmlDoc.OuterXml;
+    return await Task.FromResult(xmlDoc.OuterXml);
 }).DisableAntiforgery();
 
 app.MapPost("/uploadvulnoutofband", async ([FromForm] IFormFile file) => {
@@ -57,7 +57,7 @@ app.MapPost("/uploadvulnoutofband", async ([FromForm] IFormFile file) => {
             xmlDoc.Load(reader);
         }
     }
-    return xmlDoc.OuterXml;
+    return await Task.FromResult(xmlDoc.OuterXml);
 }).DisableAntiforgery();
 
 app.Run();
