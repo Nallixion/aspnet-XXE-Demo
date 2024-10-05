@@ -36,3 +36,32 @@ Source: Conversation with Copilot, 20/09/2024
 (12) Vulnerabilities due to XML files processing: XXE in C# applications in .... https://dev.to/_sergvasiliev_/vulnerabilities-due-to-xml-files-processing-xxe-in-c-applications-in-theory-and-in-practice-3a67.
 (13) .NET Core September 2020 Updates – 2.1.22 and 3.1.8. https://devblogs.microsoft.com/dotnet/net-core-september-2020/.
 (14) undefined. https://test.com/target.txt.
+
+
+## Snyk Scan
+
+As there is a vulnerability in the code I hooked the repo up to [Snyk](https://snyk.io/) which offers free tier for individual developers and small teams looking to stay secure as they build.
+
+### False Positive?
+![code which isn't vulnerable because it uses the .net defaults](docs\images\snyk_xxe_maybe_not_vulnerable.png)
+
+
+### Vulnerable but unclear report?
+
+This version of the code is vulnerable
+![code which is vulnerable because it uses dtdProcssing.Parse and XmlUrlResolver](docs\images\snyk_xxe_vulnerable.png)
+
+It can be proven to be vulnerable with the xml below if the server is Windows.
+
+``` xml
+<!DOCTYPE foo [
+  <!ELEMENT foo ANY >
+  <!ENTITY xxe SYSTEM "C:\windows\system32\drivers\etc\hosts" >
+]>
+<contact>
+  <name>&xxe;</name>
+  <email>test@test.com</email>
+  <message>test</message>
+</contact>
+```
+
