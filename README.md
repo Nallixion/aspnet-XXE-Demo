@@ -2,7 +2,7 @@
 Small demo to show Exploiting XML External Entities to fully understand the concepts in https://tryhackme.com/r/room/xxeinjection
 
 https://dotnetcoretutorials.com/testing-xxe-vulnerabilities-in-net-core/?utm_content=cmp-true
-
+https://stackoverflow.com/questions/14230988/how-to-prevent-xxe-attack-xmldocument-in-net
 https://book.hacktricks.xyz/pentesting-web/xxe-xee-xml-external-entity
 
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/XXE%20Injection/README.md#classic-xxe
